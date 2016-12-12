@@ -1,6 +1,6 @@
 {
-  "name": "request-open-graph",
-  "version": "1.0.0",
+  "name": "request-url-open-graph",
+  "version": "1.0.1",
   "description": "Returns an open graph protocol for a web page",
   "main": "index.js",
   "scripts": {
