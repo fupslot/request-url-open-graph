@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "Eugene Brodsky <fupslot@gmail.com>",
-  "license": "ISC",
+  "license": "GNU GPLv2",
   "dependencies": {
     "charset": "^1.0.0",
     "cheerio": "^0.22.0",
