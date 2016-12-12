@@ -6,7 +6,29 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fupslot/request-url-open-graph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fupslot/request-url-open-graph/issues"
+  },
+  "keywords": [
+    "twitter card tags",
+    "facebook open graph",
+    "open graph",
+    "opengraph",
+    "card tags",
+    "graph",
+    "twitter",
+    "twitter card",
+    "og"
+  ],
+  "ignore": [
+    "node_modules",
+    "test",
+    "tests"
+  ],
   "author": "Eugene Brodsky <fupslot@gmail.com>",
   "license": "GNU GPLv2",
   "dependencies": {
