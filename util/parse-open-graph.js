@@ -1,5 +1,8 @@
 'use strict';
 const cheerio = require('cheerio');
+const color = require('colors/safe');
+const util = require('util');
+const debuglog = util.debuglog('parser');
 
 const A_SUPPORTED_TAGS = [
   'description',
@@ -82,7 +85,7 @@ const getOGTagProperty = function(sName) {
   return sName.split(':')[2];
 };
 
-module.exports = function(sBody, sUrl) {
+module.exports = function(sBody, {url}) {
   const O_TAGS = {};
   const DOM = cheerio.load(sBody);
   const oMetaTags = DOM('meta');
@@ -99,8 +102,18 @@ module.exports = function(sBody, sUrl) {
     if (
       !sMetaProperty ||
       !A_SUPPORTED_TAGS.includes(sMetaProperty)) {
+
+      debuglog(
+        color.red(`${sMetaProperty} [NOT SUPPORTED]`)
+      );
       continue;
     }
+
+    debuglog(
+      color.green(
+        `${sMetaProperty} Mapped to: ${O_PROPERTIES_MAP[sMetaProperty]}`
+      )
+    );
 
     sMetaProperty = O_PROPERTIES_MAP[sMetaProperty] || sMetaProperty;
 
@@ -115,13 +128,27 @@ module.exports = function(sBody, sUrl) {
       O_TAGS[sTagName].push(oTag);
     } else if (A_OG_ARRAY_PROP.includes(sMetaProperty)) {
       const sTagName = getOGTagName(sMetaProperty);
+      const sPropertyName = getOGTagProperty(sMetaProperty);
 
-      const nLength = O_TAGS[sTagName] && O_TAGS[sTagName].length;
+      if (!O_TAGS[sTagName]) {
+        O_TAGS[sTagName] = [];
+      }
 
-      if (nLength && nLength > 0) {
-        const oTag = O_TAGS[sTagName][nLength - 1];
-        const sPropertyName = getOGTagProperty(sMetaProperty);
+      const nLength = O_TAGS[sTagName].length;
+
+      if (nLength > 0) {
+        let oLastTag = O_TAGS[sTagName][nLength - 1];
+
+        if (oLastTag[sPropertyName]) {
+          oLastTag = {};
+          O_TAGS[sTagName].push(oLastTag);
+        }
+
+        oLastTag[sPropertyName] = sMetaContent;
+      } else {
+        const oTag = {};
         oTag[sPropertyName] = sMetaContent;
+        O_TAGS[sTagName].push(oTag);
       }
     } else {
       O_TAGS[sTagName] = sMetaContent;
@@ -129,7 +156,7 @@ module.exports = function(sBody, sUrl) {
   }
 
   if (!O_TAGS['url']) {
-    O_TAGS['url'] = sUrl;
+    O_TAGS['url'] = url;
   }
 
   if (!O_TAGS['title']) {
