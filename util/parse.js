@@ -12,6 +12,7 @@ const A_SUPPORTED_TAGS = [
   'og:title',
   'og:description',
   'og:type',
+  'og:site',
 
   'og:image',
   'og:image:url',
@@ -31,20 +32,11 @@ const A_SUPPORTED_TAGS = [
   'og:audio:secure_url',
   'og:audio:type',
 
-  // Twitter Cards Markup Tags
-  'twitter:card',
-  'twitter:site',
-  'twitter:site:id',
-  'twitter:creator',
-  'twitter:creator:id',
+  // Support following twitter cards markup tags
   'twitter:description',
   'twitter:title',
   'twitter:image',
-  'twitter:image:alt',
-  'twitter:player',
-  'twitter:player:width',
-  'twitter:player:height',
-  'twitter:player:stream'
+  'twitter:site'
 ];
 
 const O_OG_ARRAY = {
@@ -69,6 +61,7 @@ const A_OG_ARRAY_PROP = [
 ];
 
 const O_PROPERTIES_MAP = {
+  'twitter:site': 'og:site',
   'twitter:title': 'og:title',
   'twitter:description': 'og:description',
   'twitter:image': 'og:image',
@@ -111,7 +104,7 @@ module.exports = function(sBody, {url}) {
 
     debuglog(
       color.green(
-        `${sMetaProperty} Mapped to: ${O_PROPERTIES_MAP[sMetaProperty]}`
+        `${sMetaProperty} Mapped to: ${O_PROPERTIES_MAP[sMetaProperty] || 'self'}`
       )
     );
 
