@@ -1,14 +1,14 @@
 'use strict';
 const expect = require('expect');
 const pkg = require('../package.json');
-const parseOpenGraph = require('../util/parse-open-graph');
+const parse = require('../util/parse');
 
 const sUrl = 'https://www.example.com/index.html';
 
 describe(`${pkg.name}`, function() {
 
   it('parse open graph', function() {
-    const graph = parseOpenGraph(require('./html.basic'), {url: sUrl});
+    const graph = parse(require('./html.basic'), {url: sUrl});
     expect(graph).toBeA('object');
 
     expect(graph.url).toExist();
@@ -29,7 +29,7 @@ describe(`${pkg.name}`, function() {
   });
 
   it('(graphless) should return basic tags', function() {
-    const graph = parseOpenGraph(require('./html.graphless'), {url: sUrl});
+    const graph = parse(require('./html.graphless'), {url: sUrl});
 
     expect(graph).toBeA('object');
     expect(graph.title).toExist();
@@ -37,7 +37,7 @@ describe(`${pkg.name}`, function() {
   });
 
   it('(twitter card) should return mapped tags', function() {
-    const graph = parseOpenGraph(require('./html.twitter-card'), {url: sUrl});
+    const graph = parse(require('./html.twitter-card'), {url: sUrl});
 
     expect(graph).toBeA('object');
     expect(graph).toIncludeKeys(['title', 'description', 'url', 'image']);
@@ -46,7 +46,7 @@ describe(`${pkg.name}`, function() {
   });
 
   it('(no array) should implicitly create an array property', function() {
-    const graph = parseOpenGraph(
+    const graph = parse(
       require('./html.no-arrays'),
       {url: sUrl}
     );
