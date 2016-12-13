@@ -15,8 +15,10 @@ requestUrlOpenGraph(
   (oError, oTags) => {
     if (oError) {
       console.log(oError);
+      process.exit(1);
     } else {
       console.log(JSON.stringify(oTags, undefined, 2));
+      process.exit(0);
     }
   }
 );
