@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+'use strict';
+
+require('yargs')
+  .command('fetch [url]', 'fetches the Open Graph for a given url', {
+    alias: 'u'
+  },
+  function(argv) {
+    require('../')(
+      {
+        url: argv.url
+      },
+      (oError, oTags) => {
+        if (oError) {
+          console.log(oError);
+        } else {
+          console.log(JSON.stringify(oTags, undefined, 2));
+        }
+      }
+    );
+  })
+  .help()
+  .argv;

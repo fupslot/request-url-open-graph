@@ -22,20 +22,24 @@
     "graph",
     "twitter",
     "twitter card",
-    "og"
+    "og",
+    "request open graph",
+    "request opengraph"
   ],
   "ignore": [
     "node_modules",
     "test",
     "tests"
   ],
+  "bin": "bin/request-open-graph",
   "author": "Eugene Brodsky <fupslot@gmail.com>",
   "license": "GNU GPLv2",
   "dependencies": {
     "charset": "^1.0.0",
     "cheerio": "^0.22.0",
     "iconv-lite": "^0.4.15",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "yargs": "^6.5.0"
   },
   "devDependencies": {
     "expect": "^1.20.2",
