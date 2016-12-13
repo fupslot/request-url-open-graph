@@ -1,4 +1,6 @@
 ## request-url-open-graph
+[![Build status](https://img.shields.io/travis/fupslot/request-url-open-graph/master.svg?style=flat)](https://travis-ci.org/fupslot/request-url-open-graph)
+
 Returns an [open graph protocol](http://ogp.me/) for a web page.
 
 
