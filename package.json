@@ -1,10 +1,10 @@
 {
   "name": "request-url-open-graph",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Returns an open graph protocol for a web page",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -36,5 +36,9 @@
     "cheerio": "^0.22.0",
     "iconv-lite": "^0.4.15",
     "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0"
   }
 }

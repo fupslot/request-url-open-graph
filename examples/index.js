@@ -16,7 +16,7 @@ requestUrlOpenGraph(
     if (oError) {
       console.log(oError);
     } else {
-      console.log(oTags);
+      console.log(JSON.stringify(oTags, undefined, 2));
     }
   }
 );

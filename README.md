@@ -1,7 +1,6 @@
 ## request-url-open-graph
 Returns an [open graph protocol](http://ogp.me/) for a web page.
 
-Note: This module does not support Open Graph Arrays yet. Which means, if a web page has more that one reference to an image o video, only the last one will be return. I'm working on it ;)
 
 ### Support
 
