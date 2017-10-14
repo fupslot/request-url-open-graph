@@ -4,22 +4,29 @@
 Returns an [open graph protocol](http://ogp.me/) for a web page.
 
 
-### Support
+# Support
 
 - [Open Graph (Facebook)](https://developers.facebook.com/docs/sharing/webmasters#markup)
 - [Twitter Card Tags](https://dev.twitter.com/cards/markup)
 
-### Getting started
+# Getting started
 
-#### Install
+## Install
 
 ```bash
 npm i request-url-open-graph --save
 ```
 
-### Examples
+or 
 
-#### Common use case
+```bash
+npm install request-url-open-graph -g
+```
+
+## Get Open Graph
+
+### URL
+
 
 ```javascript
 const urlOpenGraph = require('request-url-open-graph');
@@ -29,16 +36,20 @@ urlOpenGraph({url: 'http://bit.ly/2gR95sb'}, (oError, oTags) => {
 });
 ```
 
-### Install globally
+### HTML Content
 
-Will give you ability to view Open Graph in the terminal.
+```javascript
+const urlOpenGraph = require('request-url-open-graph');
 
-
-```bash
-npm install request-url-open-graph -g
+urlOpenGraph({contentHTML: '<html>...</html>'}, (oError, oTags) => {
+	console.log(oTags)
+});
 ```
 
-Now, to fetch the Open Graph run following command:
+## CLI
+
+You can view Open Graph without leaving the terminal.
+
 
 ```bash
 request-url-open-graph fetch --url=http://bit.ly/2hpP7rY
@@ -62,5 +73,3 @@ Result
   ]
 }
 ```
-
-Note: Do not use this in production. (Not tested)
